@@ -78,13 +78,15 @@ class DataTransformer:
 
             logging.info("Obtaining preprocessing object")
 
-            preprocessor_obj = self.get_data_transformer_obj()
+            preprocessor_obj = self.get_data_transformer_obj() ## Get preprocessor object
 
             target_column_name = "loan_status"  ## Target column
 
             input_feature_train_df = train_df.drop(columns=[target_column_name], axis=1)
             target_feature_train_df = train_df[target_column_name]
 
+            print(train_df['education'].unique())
+            print(train_df['self_employed'].unique())
             input_feature_test_df = test_df.drop(columns=[target_column_name], axis=1)
             target_feature_test_df = test_df[target_column_name]
 

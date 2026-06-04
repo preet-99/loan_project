@@ -26,10 +26,3 @@ class CustomException(Exception):
     
 
 
-# if __name__ == "__main__":
-#     try:
-#         a = 10/0
-#         print(a)
-#     except Exception as e:
-#         logging.info(e)
-#         raise CustomException(e, sys)

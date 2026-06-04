@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Approval · ML</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #f5f4f0;
+            --surface: #ffffff;
+            --border: #ddd;
+            --text: #1a1a1a;
+            --muted: #888;
+            --accent: #1a1a1a;
+        }
+
+        body {
+            background: var(--bg);
+            font-family: 'IBM Plex Sans', sans-serif;
+            color: var(--text);
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 2.5rem 2rem;
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.62rem;
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--muted);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        h1 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 1.5rem 0;
+        }
+
+        .meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .meta-row span:first-child { color: var(--muted); }
+        .meta-row span:last-child  { color: var(--text); font-weight: 500; }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 0.65rem;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            letter-spacing: 0.04em;
+            text-align: center;
+            text-decoration: none;
+            transition: opacity 0.15s;
+        }
+
+        .btn:hover  { opacity: 0.82; }
+        .btn:active { opacity: 0.70; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <span class="tag">Loan Approval Prediction · ML</span>
+        <h1>Loan Status Predictor</h1>
+        <p>Enter your financial details to predict whether your loan application will be approved or rejected.</p>
+
+        <div class="divider"></div>
+
+        <div class="meta">
+            <div class="meta-row">
+                <span>Input Features</span>
+                <span>11</span>
+            </div>
+            <div class="meta-row">
+                <span>Model Type</span>
+                <span>Classification</span>
+            </div>
+            <div class="meta-row">
+                <span>Output</span>
+                <span>Approved / Rejected</span>
+            </div>
+        </div>
+
+        <a class="btn" href="{{ url_for('predict_data') }}">Start Prediction →</a>
+    </div>
+</body>
+</html>

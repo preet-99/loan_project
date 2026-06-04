@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from src.logger import logging
 from src.exception import CustomException
 from src.components.data_transformer import DataTransformer
+from src.components.model_trainer import ModelTrainer
 
 from sklearn.model_selection import train_test_split
 
@@ -30,6 +31,9 @@ class DataIngestion:
             df = pd.read_csv("notebook\data\loan.csv")
             ## Remove spaces 
             df.columns = df.columns.str.strip()
+            df['education'] = df['education'].str.strip()
+            df['self_employed'] = df['self_employed'].str.strip()
+            
             df.drop(columns=["loan_id"], inplace=True)
 
             logging.info("Read dataset as dataframe")
@@ -70,4 +74,7 @@ if __name__ == "__main__":
     train_data, test_data = obj.initiate_data_ingestion()
 
     data_transformation = DataTransformer()
-    data_transformation.initiate_data_transformation(train_data, test_data)
+    train_arr, test_arr, _ = data_transformation.initiate_data_transformation(train_data, test_data)
+
+    modeltrainer = ModelTrainer()
+    print(modeltrainer.initiate_model_trainer(train_arr, test_arr))
