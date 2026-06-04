@@ -1,11 +1,11 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template,session,redirect, url_for
 
 from src.pipeline.predict_pipeline import PredictPipeline, CustomData
 
 application = Flask(__name__)
 
 app = application
-
+app.secret_key = "Preet@123"
 
 @app.route("/")
 def index():
@@ -15,7 +15,8 @@ def index():
 @app.route("/predictdata", methods=["GET", "POST"])
 def predict_data():
     if request.method == "GET":
-        return render_template("home.html")
+        results = session.pop("results", None)
+        return render_template("home.html", results=results)
     else:
         data = CustomData(
             no_of_dependents=float(request.form.get("no_of_dependents")),
@@ -32,13 +33,12 @@ def predict_data():
         )
 
         pred_df = data.get_data_as_data_frame()
-        print(pred_df)
 
         predict_pipeline = PredictPipeline()
         results = predict_pipeline.predict(pred_df)
-        print(results[0].strip())
 
-        return render_template("home.html", results=results[0].strip())
+        session["results"] = results[0].strip()  
+        return redirect(url_for("predict_data"))
 
 
 if __name__ == "__main__":
